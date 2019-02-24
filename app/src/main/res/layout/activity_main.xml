@@ -1,222 +1,336 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
+
 		<variable
 			name="schedule"
 			type="com.husnikamal.jadwalsholat.model.SholatTimeModel[]" />
 	</data>
 
-	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		xmlns:tools="http://schemas.android.com/tools"
+	<ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		tools:context=".MainActivity">
+		android:layout_height="match_parent">
 
-		<TextView
+		<FrameLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:padding="32dp"
-			android:text="Jadwal Sholat"
-			android:textAlignment="center"
-			android:textColor="@android:color/black"
-			android:textSize="36sp"
-			android:textStyle="bold" />
+			android:layout_height="match_parent">
 
-		<android.support.v7.widget.CardView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="16dp"
-			android:layout_marginTop="16dp"
-			android:layout_marginBottom="8dp"
-			android:background="@android:color/white">
+			<ImageView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:adjustViewBounds="true"
+				android:src="@drawable/group" />
 
 			<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				tools:context=".MainActivity">
 
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:paddingHorizontal="16dp"
-					android:paddingTop="16dp"
-					android:paddingBottom="4dp"
-					android:text="@{schedule[0].name}"
+					android:paddingHorizontal="32dp"
+					android:paddingTop="56dp"
+					android:text="Jadwal Sholat"
+					android:textAlignment="textStart"
+					android:textColor="#C4E98020"
+					android:textSize="36sp"
+					android:textStyle="bold" />
+
+				<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:paddingHorizontal="32dp"
+					android:text="Untuk daerah Bandung dan sekitarnya"
 					android:textColor="@android:color/black" />
 
 				<TextView
-					android:id="@+id/txt_subuh"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:paddingHorizontal="16dp"
-					android:paddingBottom="16dp"
-					android:text="@{schedule[0].time}" />
+					android:padding="32dp"
+					android:text="25 Februari 2019"
+					android:textColor="@android:color/black"
+					android:textSize="20sp"
+					android:textStyle="bold" />
+
+				<android.support.v7.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="16dp"
+					android:layout_marginTop="16dp"
+					android:layout_marginBottom="8dp"
+					android:background="@android:color/white">
+
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<ImageView
+							android:id="@+id/img_fajr"
+							android:layout_width="56dp"
+							android:layout_height="56dp"
+							android:paddingLeft="16dp"
+							android:paddingTop="16dp"
+							android:src="@drawable/fajr" />
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_toRightOf="@id/img_fajr"
+							android:orientation="vertical">
+
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="16dp"
+								android:paddingTop="16dp"
+								android:paddingBottom="4dp"
+								android:text="@{schedule[0].name}"
+								android:textColor="@android:color/black"
+								tools:text="Subuh" />
+
+							<TextView
+								android:id="@+id/txt_subuh"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="16dp"
+								android:paddingBottom="16dp"
+								android:text="@{schedule[0].time}"
+								tools:text="04.32" />
+						</LinearLayout>
+					</RelativeLayout>
+
+					<Switch
+						android:id="@+id/switch_subuh"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:padding="16dp" />
+				</android.support.v7.widget.CardView>
+
+				<android.support.v7.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="16dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginBottom="8dp"
+					android:background="@android:color/white">
+
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<ImageView
+							android:id="@+id/img_zuhur"
+							android:layout_width="56dp"
+							android:layout_height="56dp"
+							android:paddingLeft="16dp"
+							android:paddingTop="16dp"
+							android:src="@drawable/zuhr" />
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_toRightOf="@id/img_zuhur"
+							android:orientation="vertical">
+
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="16dp"
+								android:paddingTop="16dp"
+								android:paddingBottom="4dp"
+								android:text="@{schedule[1].name}"
+								android:textColor="@android:color/black"
+								tools:text="Subuh" />
+
+							<TextView
+								android:id="@+id/txt_zuhur"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="16dp"
+								android:paddingBottom="16dp"
+								android:text="@{schedule[1].time}"
+								tools:text="04.32" />
+						</LinearLayout>
+					</RelativeLayout>
+
+					<Switch
+						android:id="@+id/switch_zuhur"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:padding="16dp" />
+				</android.support.v7.widget.CardView>
+
+				<android.support.v7.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="16dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginBottom="8dp"
+					android:background="@android:color/white">
+
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<ImageView
+							android:id="@+id/img_ashar"
+							android:layout_width="56dp"
+							android:layout_height="56dp"
+							android:paddingLeft="16dp"
+							android:paddingTop="16dp"
+							android:src="@drawable/ashr" />
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_toRightOf="@id/img_ashar"
+							android:orientation="vertical">
+
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="16dp"
+								android:paddingTop="16dp"
+								android:paddingBottom="4dp"
+								android:text="@{schedule[2].name}"
+								android:textColor="@android:color/black"
+								tools:text="Subuh" />
+
+							<TextView
+								android:id="@+id/txt_ashar"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="16dp"
+								android:paddingBottom="16dp"
+								android:text="@{schedule[2].time}"
+								tools:text="04.32" />
+						</LinearLayout>
+					</RelativeLayout>
+
+					<Switch
+						android:id="@+id/switch_ashar"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:padding="16dp" />
+				</android.support.v7.widget.CardView>
+
+				<android.support.v7.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="16dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginBottom="8dp"
+					android:background="@android:color/white">
+
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<ImageView
+							android:id="@+id/img_maghrib"
+							android:layout_width="56dp"
+							android:layout_height="56dp"
+							android:paddingLeft="16dp"
+							android:paddingTop="16dp"
+							android:src="@drawable/maghreeb" />
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_toRightOf="@id/img_maghrib"
+							android:orientation="vertical">
+
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="16dp"
+								android:paddingTop="16dp"
+								android:paddingBottom="4dp"
+								android:text="@{schedule[3].name}"
+								android:textColor="@android:color/black"
+								tools:text="Subuh" />
+
+							<TextView
+								android:id="@+id/txt_maghrib"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="16dp"
+								android:paddingBottom="16dp"
+								android:text="@{schedule[3].time}"
+								tools:text="04.32" />
+						</LinearLayout>
+					</RelativeLayout>
+
+					<Switch
+						android:id="@+id/switch_magrib"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:padding="16dp" />
+				</android.support.v7.widget.CardView>
+
+				<android.support.v7.widget.CardView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginHorizontal="16dp"
+					android:layout_marginTop="8dp"
+					android:layout_marginBottom="16dp"
+					android:background="@android:color/white">
+
+					<RelativeLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content">
+
+						<ImageView
+							android:id="@+id/img_isya"
+							android:layout_width="56dp"
+							android:layout_height="56dp"
+							android:paddingLeft="16dp"
+							android:paddingTop="16dp"
+							android:src="@drawable/isha" />
+
+						<LinearLayout
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_toRightOf="@id/img_isya"
+							android:orientation="vertical">
+
+							<TextView
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="16dp"
+								android:paddingTop="16dp"
+								android:paddingBottom="4dp"
+								android:text="@{schedule[3].name}"
+								android:textColor="@android:color/black"
+								tools:text="Subuh" />
+
+							<TextView
+								android:id="@+id/txt_isya"
+								android:layout_width="match_parent"
+								android:layout_height="wrap_content"
+								android:paddingHorizontal="16dp"
+								android:paddingBottom="16dp"
+								android:text="@{schedule[3].time}"
+								tools:text="04.32" />
+						</LinearLayout>
+					</RelativeLayout>
+
+					<Switch
+						android:id="@+id/switch_isya"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						android:padding="16dp" />
+				</android.support.v7.widget.CardView>
 			</LinearLayout>
-
-			<Switch
-				android:id="@+id/switch_subuh"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:padding="16dp" />
-		</android.support.v7.widget.CardView>
-
-		<android.support.v7.widget.CardView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="16dp"
-			android:layout_marginTop="8dp"
-			android:layout_marginBottom="8dp"
-			android:background="@android:color/white">
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
-
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:paddingHorizontal="16dp"
-					android:paddingTop="16dp"
-					android:paddingBottom="4dp"
-					android:text="@{schedule[1].name}"
-					android:textColor="@android:color/black" />
-
-				<TextView
-					android:id="@+id/txt_zuhur"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:paddingHorizontal="16dp"
-					android:paddingBottom="16dp"
-					android:text="@{schedule[1].time}" />
-			</LinearLayout>
-
-			<Switch
-				android:id="@+id/switch_zuhur"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:padding="16dp" />
-		</android.support.v7.widget.CardView>
-
-		<android.support.v7.widget.CardView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="16dp"
-			android:layout_marginTop="8dp"
-			android:layout_marginBottom="8dp"
-			android:background="@android:color/white">
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
-
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:paddingHorizontal="16dp"
-					android:paddingTop="16dp"
-					android:paddingBottom="4dp"
-					android:text="@{schedule[2].name}"
-					android:textColor="@android:color/black" />
-
-				<TextView
-					android:id="@+id/txt_ashar"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:paddingHorizontal="16dp"
-					android:paddingBottom="16dp"
-					android:text="@{schedule[2].time}" />
-			</LinearLayout>
-
-			<Switch
-				android:id="@+id/switch_ashar"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:padding="16dp" />
-		</android.support.v7.widget.CardView>
-
-		<android.support.v7.widget.CardView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="16dp"
-			android:layout_marginTop="8dp"
-			android:layout_marginBottom="8dp"
-			android:background="@android:color/white">
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
-
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:paddingHorizontal="16dp"
-					android:paddingTop="16dp"
-					android:paddingBottom="4dp"
-					android:text="@{schedule[3].name}"
-					android:textColor="@android:color/black" />
-
-				<TextView
-					android:id="@+id/txt_magrib"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:paddingHorizontal="16dp"
-					android:paddingBottom="16dp"
-					android:text="@{schedule[3].time}" />
-			</LinearLayout>
-
-			<Switch
-				android:id="@+id/switch_magrib"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:padding="16dp" />
-		</android.support.v7.widget.CardView>
-
-		<android.support.v7.widget.CardView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginHorizontal="16dp"
-			android:layout_marginTop="8dp"
-			android:layout_marginBottom="8dp"
-			android:background="@android:color/white">
-
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:orientation="vertical">
-
-				<TextView
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:paddingHorizontal="16dp"
-					android:paddingTop="16dp"
-					android:paddingBottom="4dp"
-					android:text="@{schedule[4].name}"
-					android:textColor="@android:color/black" />
-
-				<TextView
-					android:id="@+id/txt_isya"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:paddingHorizontal="16dp"
-					android:paddingBottom="16dp"
-					android:text="@{schedule[4].time}" />
-			</LinearLayout>
-
-			<Switch
-				android:id="@+id/switch_isya"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:padding="16dp" />
-		</android.support.v7.widget.CardView>
-	</LinearLayout>
+		</FrameLayout>
+	</ScrollView>
 </layout>
