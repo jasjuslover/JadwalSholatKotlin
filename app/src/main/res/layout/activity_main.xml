@@ -3,10 +3,10 @@
 	xmlns:tools="http://schemas.android.com/tools">
 
 	<data>
-
+		<import type="java.util.ArrayList"/>
 		<variable
 			name="schedule"
-			type="com.husnikamal.jadwalsholat.model.SholatTimeModel[]" />
+			type="ArrayList&lt;com.husnikamal.jadwalsholat.model.SholatTimeModel&gt;" />
 	</data>
 
 	<ScrollView
@@ -56,7 +56,7 @@
 					android:textSize="20sp"
 					android:textStyle="bold" />
 
-				<android.support.v7.widget.CardView
+				<androidx.cardview.widget.CardView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginHorizontal="16dp"
@@ -109,9 +109,9 @@
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
 						android:padding="16dp" />
-				</android.support.v7.widget.CardView>
+				</androidx.cardview.widget.CardView>
 
-				<android.support.v7.widget.CardView
+				<androidx.cardview.widget.CardView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginHorizontal="16dp"
@@ -164,9 +164,9 @@
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
 						android:padding="16dp" />
-				</android.support.v7.widget.CardView>
+				</androidx.cardview.widget.CardView>
 
-				<android.support.v7.widget.CardView
+				<androidx.cardview.widget.CardView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginHorizontal="16dp"
@@ -219,9 +219,9 @@
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
 						android:padding="16dp" />
-				</android.support.v7.widget.CardView>
+				</androidx.cardview.widget.CardView>
 
-				<android.support.v7.widget.CardView
+				<androidx.cardview.widget.CardView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginHorizontal="16dp"
@@ -274,9 +274,9 @@
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
 						android:padding="16dp" />
-				</android.support.v7.widget.CardView>
+				</androidx.cardview.widget.CardView>
 
-				<android.support.v7.widget.CardView
+				<androidx.cardview.widget.CardView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginHorizontal="16dp"
@@ -308,7 +308,7 @@
 								android:paddingHorizontal="16dp"
 								android:paddingTop="16dp"
 								android:paddingBottom="4dp"
-								android:text="@{schedule[3].name}"
+								android:text="@{schedule[4].name}"
 								android:textColor="@android:color/black"
 								tools:text="Subuh" />
 
@@ -318,7 +318,7 @@
 								android:layout_height="wrap_content"
 								android:paddingHorizontal="16dp"
 								android:paddingBottom="16dp"
-								android:text="@{schedule[3].time}"
+								android:text="@{schedule[4].time}"
 								tools:text="04.32" />
 						</LinearLayout>
 					</RelativeLayout>
@@ -329,7 +329,7 @@
 						android:layout_height="wrap_content"
 						android:layout_gravity="center"
 						android:padding="16dp" />
-				</android.support.v7.widget.CardView>
+				</androidx.cardview.widget.CardView>
 			</LinearLayout>
 		</FrameLayout>
 	</ScrollView>

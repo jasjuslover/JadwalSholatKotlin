@@ -1,15 +1,18 @@
 package com.husnikamal.jadwalsholat
 
 import android.app.PendingIntent
-import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.WorkManager
 import com.husnikamal.jadwalsholat.model.SholatTimeModel
 import com.husnikamal.jadwalsholat.databinding.ActivityMainBinding
+import com.husnikamal.jadwalsholat.utils.PrayTime
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,22 +23,55 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val binding: ActivityMainBinding =
-                DataBindingUtil.setContentView(this, R.layout.activity_main)
+            DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val today = arrayOfNulls<SholatTimeModel>(5 )
-        today[0] = SholatTimeModel("Subuh", "04:36")
-        today[1] = SholatTimeModel("Zuhur", "12:03")
-        today[2] = SholatTimeModel("Ashar", "15:11")
-        today[3] = SholatTimeModel("Magrib", "18:11")
-        today[4] = SholatTimeModel("Isya", "19:22")
+        val latitude = -6.9175
+        val longitude = 107.6191
+
+        val defaultTimeZone = TimeZone.getTimeZone("GMT+7")
+        val defaultCalendar = Calendar.getInstance(defaultTimeZone)
+
+        // get offset from UTC, accounting for DST
+        val defaultTzOffsetMs =
+            defaultCalendar.get(Calendar.ZONE_OFFSET) + defaultCalendar.get(Calendar.DST_OFFSET)
+        val timezone: Double = (defaultTzOffsetMs / (1000 * 60 * 60)).toDouble()
+
+        val prayScheduler = PrayTime()
+        prayScheduler.timeFormat = PrayTime.TIME_24
+        prayScheduler.calcMethod = PrayTime.CUSTOM // SIHAT KEMENAG
+        prayScheduler.asrJuristic = PrayTime.SHAFII
+        prayScheduler.adjustHighLats = PrayTime.ANGLE_BASED
+
+        val offsets =
+            intArrayOf(2, 2, 4, 2, 0, 8, 3) // {Fajr,Sunrise,Dhuhr,Asr,Sunset,Maghrib,Isha}
+        prayScheduler.tune(offsets)
+
+        val now = Date()
+        val cal = Calendar.getInstance()
+        cal.time = now
+
+        val prayTimes = prayScheduler.getPrayerTimes(
+            cal,
+            latitude, longitude,
+            timezone
+        )
+        val prayNames = prayScheduler.timeNames
+
+        var today = arrayListOf<SholatTimeModel>()
+
+        for ((index, value) in prayTimes.withIndex()) {
+            Log.d("Huwiw ${prayNames[index]}", value)
+            if (!prayNames[index].equals("Sunrise") && !prayNames[index].equals("Sunset"))
+                today.add(SholatTimeModel(prayNames[index], value))
+        }
 
         binding.schedule = today
 
         switch_subuh.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked)
-                enableReminder(4, 36, 0, true)
+                enableReminder(4, 33, 0, true)
             else
-                enableReminder(4, 36,0, false)
+                enableReminder(4, 33, 0, false)
         }
 
         switch_zuhur.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -69,16 +105,16 @@ class MainActivity : AppCompatActivity() {
 
     fun enableReminder(hours: Int, minutes: Int, reqCode: Int, enable: Boolean) {
         val data = Data.Builder()
-                .putInt("hours", hours)
-                .putInt("minutes", minutes)
-                .putInt("reqCode", reqCode)
-                .putBoolean("enable", enable)
-                .build()
+            .putInt("hours", hours)
+            .putInt("minutes", minutes)
+            .putInt("reqCode", reqCode)
+            .putBoolean("enable", enable)
+            .build()
 
         val mWorker = WorkManager.getInstance()
         val oneTimeRequest = OneTimeWorkRequest.Builder(ReminderWorker::class.java)
         val oneTimeWorkRequest = oneTimeRequest.setInputData(data)
-                .build()
+            .build()
 
         mWorker.enqueue(oneTimeWorkRequest)
     }
