@@ -2,4 +2,14 @@
     <string name="app_name">Jadwal Sholat</string>
     <string name="annazhafatu">Kebersihan itu sebagian dari Iman</string>
     <string name="husni_kasep">Husni Emang Kasep Pisan</string>
+    <string name="no_location_detected">
+        No location detected. Make sure location is enabled on the device.
+    </string>
+    <string name="permission_denied_explanation">
+        Permission was denied, but is needed for core functionality.
+    </string>
+    <string name="permission_rationale">
+        Location permission is needed for core functionality
+    </string>
+    <string name="settings">Settings</string>
 </resources>
