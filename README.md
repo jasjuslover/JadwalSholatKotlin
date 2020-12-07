@@ -11,5 +11,3 @@ Simple salat scheduler apps with semi fullscreen notification. Local praytime ca
 
 ## Run This Project 🚀
 Open this project on Android Studio as usual. Make sure you have already device connected or Android emulator. Just run it!
-
-s
